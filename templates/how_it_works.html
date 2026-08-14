@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+How It Works | PhishGuard AI
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<section class="technology-page">
+
+
+<div class="page-header">
+
+<h1>
+How PhishGuard AI Works
+</h1>
+
+
+<p>
+An overview of the hybrid deep learning architecture,
+risk analysis, and explainability framework.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<section class="pipeline-section">
+
+
+<h2>
+Detection Pipeline
+</h2>
+
+
+
+<div class="pipeline-container">
+
+
+
+<div class="pipeline-card">
+
+<h3>
+1
+</h3>
+
+<h4>
+Email Input
+</h4>
+
+<p>
+The user provides an email message for analysis.
+</p>
+
+</div>
+
+
+
+
+
+<div class="pipeline-arrow">
+↓
+</div>
+
+
+
+
+
+<div class="pipeline-card">
+
+<h3>
+2
+</h3>
+
+<h4>
+Text Representation
+</h4>
+
+<p>
+The email text is tokenized and processed before entering the model.
+</p>
+
+</div>
+
+
+
+
+
+<div class="pipeline-arrow">
+↓
+</div>
+
+
+
+
+
+<div class="pipeline-card">
+
+<h3>
+3
+</h3>
+
+<h4>
+ELECTRA Encoder
+</h4>
+
+<p>
+The ELECTRA transformer extracts contextual language representations.
+</p>
+
+</div>
+
+
+
+
+
+<div class="pipeline-arrow">
+↓
+</div>
+
+
+
+
+
+<div class="pipeline-card">
+
+<h3>
+4
+</h3>
+
+<h4>
+CNN Feature Extraction
+</h4>
+
+<p>
+CNN layers capture important local patterns and phishing-related phrases.
+</p>
+
+</div>
+
+
+
+
+
+<div class="pipeline-arrow">
+↓
+</div>
+
+
+
+
+
+<div class="pipeline-card">
+
+<h3>
+5
+</h3>
+
+<h4>
+Classification
+</h4>
+
+<p>
+The hybrid model predicts whether an email is legitimate or phishing.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="technology-section">
+
+
+<h2>
+Additional Security Analysis
+</h2>
+
+
+
+
+<div class="technology-container">
+
+
+
+
+
+<div class="technology-card">
+
+
+<h3>
+🌐 URL Security Analysis
+</h3>
+
+
+<p>
+
+URLs inside emails are evaluated using security rules
+including suspicious domains, keywords, and URL patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="technology-card">
+
+
+<h3>
+📊 Confidence Assessment
+</h3>
+
+
+<p>
+
+Prediction confidence is converted into understandable
+risk categories such as legitimate, uncertain, and phishing risk.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="technology-card">
+
+
+<h3>
+🔍 Explainable AI
+</h3>
+
+
+<p>
+
+Integrated Gradients highlights important tokens
+that influenced the model decision.
+
+</p>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="xai-method-section">
+
+
+<h2>
+Why Explainable AI?
+</h2>
+
+
+<p>
+
+Deep learning models can achieve high accuracy but are often difficult
+to interpret. PhishGuard AI uses Integrated Gradients to provide
+transparent explanations by identifying words that increase or decrease
+the phishing prediction score.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+</section>
+
+
+{% endblock %}

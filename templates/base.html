@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+
+        {% block title %}
+
+        Phishing Email Detector
+
+        {% endblock %}
+
+    </title>
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+<!-- ==========================
+NAVIGATION BAR
+========================== -->
+
+
+<nav class="navbar">
+
+
+
+    <a href="/" class="logo">
+
+        PhishGuard AI
+
+    </a>
+
+
+
+
+
+    <div class="nav-links">
+
+
+        <a href="/">
+            Home
+        </a>
+
+
+
+        <a href="/analyze">
+            Analyze Email
+        </a>
+
+
+
+        <a href="/how-it-works">
+            Technology
+        </a>
+
+
+
+        <a href="/about">
+            About
+        </a>
+
+
+
+    </div>
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+<!-- ==========================
+MAIN CONTENT
+========================== -->
+
+
+<main>
+
+
+    {% block content %}
+
+
+    {% endblock %}
+
+
+</main>
+
+
+
+
+
+
+
+
+<!-- ==========================
+FOOTER
+========================== -->
+
+
+<footer>
+
+
+    <p>
+
+        © 2026 PhishGuard AI |
+        ELECTRA-CNN Hybrid Phishing Detection System |
+        Explainable AI Enabled
+
+    </p>
+
+
+
+</footer>
+
+
+
+
+
+
+
+</body>
+
+
+</html>

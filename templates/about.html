@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+About | PhishGuard AI
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+<section class="about-page">
+
+
+
+<div class="page-header">
+
+
+<h1>
+About PhishGuard AI
+</h1>
+
+
+<p>
+An explainable artificial intelligence system for phishing email detection.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<section class="about-card">
+
+
+<h2>
+Project Overview
+</h2>
+
+
+
+<p>
+
+PhishGuard AI is a phishing email detection system developed using
+a hybrid ELECTRA-CNN deep learning architecture. The system combines
+contextual language understanding from ELECTRA with CNN-based feature
+extraction to identify phishing-related patterns in email content.
+
+</p>
+
+
+
+<p>
+
+Unlike traditional black-box detection systems, PhishGuard AI provides
+Explainable AI (XAI) insights using Integrated Gradients, allowing users
+to understand which words contributed to the final prediction.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="about-card">
+
+
+<h2>
+Core Technologies
+</h2>
+
+
+
+
+<div class="about-grid">
+
+
+
+
+
+<div class="about-item">
+
+
+<h3>
+🧠 ELECTRA-CNN Hybrid Model
+</h3>
+
+
+<p>
+
+ELECTRA generates contextual representations of email text,
+while CNN layers capture important local linguistic patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="about-item">
+
+
+<h3>
+🔍 Explainable AI
+</h3>
+
+
+<p>
+
+Integrated Gradients highlights important tokens that increase
+or decrease the phishing prediction score.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="about-item">
+
+
+<h3>
+🌐 URL Security Analysis
+</h3>
+
+
+<p>
+
+Embedded URLs are analyzed using security rules including
+domain reputation, suspicious keywords, and URL characteristics.
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="about-card">
+
+
+<h2>
+System Capabilities
+</h2>
+
+
+
+<ul>
+
+
+<li>
+Email phishing classification using deep learning
+</li>
+
+
+<li>
+Confidence-based risk assessment
+</li>
+
+
+<li>
+URL-based security analysis
+</li>
+
+
+<li>
+Human-readable AI explanations
+</li>
+
+
+<li>
+Technical XAI visualization for transparency
+</li>
+
+
+</ul>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="about-card">
+
+
+<h2>
+Current Limitations
+</h2>
+
+
+
+<p>
+
+Although the system achieves strong phishing detection capability,
+some legitimate emails may contain phishing-like patterns such as
+verification requests, security warnings, and account-related language.
+These cases may require additional contextual verification.
+
+</p>
+
+
+
+<p>
+
+The current URL analysis relies on rule-based security indicators
+rather than real-time website reputation checking.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="about-card">
+
+
+<h2>
+Future Improvements
+</h2>
+
+
+
+<ul>
+
+
+<li>
+Integration with real-time URL reputation services.
+</li>
+
+
+<li>
+Continuous learning from new phishing campaigns.
+</li>
+
+
+<li>
+Improved multilingual phishing detection.
+</li>
+
+
+<li>
+Deployment optimization for large-scale email systems.
+</li>
+
+
+</ul>
+
+
+
+</section>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,413 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Home | PhishGuard AI
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <h1>
+            AI-Powered Phishing Email Detection
+        </h1>
+
+
+
+        <p>
+
+            Protect against phishing threats using a
+            hybrid ELECTRA-CNN deep learning model
+            combined with Explainable AI and URL security analysis.
+
+        </p>
+
+
+
+
+        <a href="/analyze" class="btn-primary">
+
+            Analyze Email
+
+        </a>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="hero-image">
+
+
+        <img
+        src="{{ url_for('static', filename='images/phishing_detection.jpg') }}"
+        alt="AI phishing detection">
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- FEATURES SECTION -->
+
+
+<section class="features">
+
+
+<h2>
+Advanced Security Features
+</h2>
+
+
+
+
+<div class="feature-container">
+
+
+
+
+
+<div class="feature-card">
+
+
+<h3>
+🧠 Hybrid AI Detection
+</h3>
+
+
+<p>
+
+Uses an ELECTRA transformer with CNN feature extraction
+to identify phishing-related email patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<h3>
+🔍 Explainable AI
+</h3>
+
+
+<p>
+
+Integrated Gradients highlights important words
+that influenced the prediction.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<h3>
+🌐 URL Security Analysis
+</h3>
+
+
+<p>
+
+Detect suspicious links using domain reputation,
+URL patterns, and security rules.
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- WORKFLOW SECTION -->
+
+
+<section class="workflow-section">
+
+
+
+<h2>
+How PhishGuard AI Works
+</h2>
+
+
+
+
+<div class="workflow-container">
+
+
+
+<div class="workflow-step">
+
+<h3>
+1
+</h3>
+
+<p>
+Email Input
+</p>
+
+</div>
+
+
+
+
+<div class="arrow">
+↓
+</div>
+
+
+
+
+<div class="workflow-step">
+
+<h3>
+2
+</h3>
+
+<p>
+ELECTRA Text Representation
+</p>
+
+</div>
+
+
+
+
+
+<div class="arrow">
+↓
+</div>
+
+
+
+
+
+<div class="workflow-step">
+
+<h3>
+3
+</h3>
+
+<p>
+CNN Feature Extraction
+</p>
+
+</div>
+
+
+
+
+
+<div class="arrow">
+↓
+</div>
+
+
+
+
+
+<div class="workflow-step">
+
+<h3>
+4
+</h3>
+
+<p>
+Phishing Prediction + XAI Explanation
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- RESEARCH SECTION -->
+
+
+
+<section class="research-section">
+
+
+<h2>
+Research-Based Detection Framework
+</h2>
+
+
+
+<div class="research-container">
+
+
+<div>
+
+
+<h3>
+Model Architecture
+</h3>
+
+
+<p>
+ELECTRA + CNN Hybrid Deep Learning Model
+</p>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<h3>
+Explainability Method
+</h3>
+
+
+<p>
+Integrated Gradients (IG)
+</p>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<h3>
+Additional Analysis
+</h3>
+
+
+<p>
+Confidence scoring and URL risk evaluation
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- FINAL CTA -->
+
+
+<section class="cta-section">
+
+
+<h2>
+Ready to Analyze an Email?
+</h2>
+
+
+
+<p>
+
+Check suspicious emails and understand why
+the AI made its decision.
+
+</p>
+
+
+
+<a href="/analyze" class="btn-primary">
+
+Start Detection
+
+</a>
+
+
+
+</section>
+
+
+
+
+
+{% endblock %}

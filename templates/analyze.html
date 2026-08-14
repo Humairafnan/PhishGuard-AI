@@ -1,0 +1,779 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Analyze Email | PhishGuard AI
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<section class="analyze-container">
+
+
+<div class="page-header">
+
+<h1>
+Analyze Email
+</h1>
+
+
+<p>
+Paste an email message below to detect whether it is legitimate or phishing.
+</p>
+
+
+</div>
+
+
+
+
+<form method="POST" action="/analyze" class="email-form">
+
+
+<textarea
+name="email_text"
+placeholder="Paste email content here..."
+required></textarea>
+
+
+
+<button class="primary-btn" type="submit">
+Analyze Email
+</button>
+
+
+</form>
+
+
+
+
+
+{% if error %}
+
+<div class="error-card">
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+{% if result %}
+
+
+<section class="result-card">
+
+
+<h2>
+Detection Result
+</h2>
+
+
+
+
+<div class="prediction-box">
+
+<p>
+Model Classification
+</p>
+
+
+
+{% if risk %}
+
+
+{% if risk.category == "legitimate" %}
+
+<h3 class="legitimate">
+✅ Legitimate
+</h3>
+
+
+{% elif risk.category == "likely_legitimate" %}
+
+<h3 class="likely-legitimate">
+🟢 Likely Legitimate
+</h3>
+
+
+{% elif risk.category == "uncertain" %}
+
+<h3 class="uncertain">
+⚠️ Uncertain
+</h3>
+
+
+{% elif risk.category == "likely_phishing" %}
+
+<h3 class="likely-phishing">
+⚠️ Likely Phishing
+</h3>
+
+
+{% elif risk.category == "high_risk_phishing" %}
+
+<h3 class="phishing">
+🚨 High Risk Phishing
+</h3>
+
+
+{% endif %}
+
+
+{% endif %}
+
+
+</div>
+
+
+
+
+
+
+<div class="confidence-section">
+
+
+<p>
+Model Confidence
+</p>
+
+
+<small>
+Confidence represents how strongly the AI model supports its prediction.
+</small>
+
+
+
+<div class="progress-bar">
+
+
+<div
+class="progress-fill"
+style="width: {{ result.confidence * 100 }}%;">
+</div>
+
+
+</div>
+
+
+<span>
+{{ "%.2f"|format(result.confidence * 100) }}%
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="probabilities">
+
+
+<p>
+Legitimate:
+
+<strong>
+{{ "%.2f"|format(result.legitimate_probability * 100) }}%
+</strong>
+
+</p>
+
+
+
+<p>
+Phishing:
+
+<strong>
+{{ "%.2f"|format(result.phishing_probability * 100) }}%
+</strong>
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+{% if risk %}
+
+
+<div class="risk-card">
+
+
+<h3>
+Risk Assessment
+</h3>
+
+
+<p>
+<strong>
+{{ risk.level }}
+</strong>
+</p>
+
+
+<p>
+{{ risk.message }}
+</p>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% if result.url_analysis %}
+
+
+<div class="risk-card">
+
+
+<h3>
+URL Security Analysis
+</h3>
+
+
+<p>
+URLs detected:
+
+<strong>
+{{ result.url_analysis.urls_found }}
+</strong>
+
+</p>
+
+
+<p>
+URL Risk Score:
+
+<strong>
+{{ result.url_analysis.total_risk_score }}
+</strong>
+
+</p>
+
+
+
+{% for item in result.url_analysis.details %}
+
+
+<hr>
+
+
+<p>
+
+<strong>
+URL:
+</strong>
+
+{{ item.url }}
+
+</p>
+
+
+
+<p>
+
+<strong>
+Risk Score:
+</strong>
+
+{{ item.risk_score }}
+
+</p>
+
+
+
+
+{% if item.reasons %}
+
+
+<strong>
+Security Findings:
+</strong>
+
+
+<ul>
+
+{% for reason in item.reasons %}
+
+<li>
+{{ reason }}
+</li>
+
+{% endfor %}
+
+</ul>
+
+
+{% endif %}
+
+
+
+{% endfor %}
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+
+<form action="/explain" method="GET">
+
+
+<button class="secondary-btn">
+
+Why did AI decide?
+
+</button>
+
+
+</form>
+
+
+
+</section>
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% if user_explanation %}
+
+
+
+<section class="explanation-card">
+
+
+<h2>
+Why did the AI decide?
+</h2>
+
+
+
+
+<p>
+{{ user_explanation.summary }}
+</p>
+
+
+
+
+
+{% if user_explanation.positive_factors %}
+
+
+<h3 class="danger-title">
+
+Factors Increasing Phishing Score
+
+</h3>
+
+
+
+<div class="token-list danger">
+
+
+{% for token in user_explanation.positive_factors %}
+
+<span>
+{{ token }}
+</span>
+
+{% endfor %}
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% if user_explanation.negative_factors %}
+
+
+<h3 class="safe-title">
+
+Factors Reducing Phishing Score
+
+</h3>
+
+
+
+
+<div class="token-list safe">
+
+
+{% for token in user_explanation.negative_factors %}
+
+
+<span>
+{{ token }}
+</span>
+
+
+{% endfor %}
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</section>
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+<!-- NEW URL EXPLANATION SECTION -->
+
+
+{% if url_analysis %}
+
+
+<section class="explanation-card">
+
+
+<h2>
+URL Security Explanation
+</h2>
+
+
+
+<p>
+The AI also evaluated URLs present in the email using rule-based security analysis.
+</p>
+
+
+
+
+<p>
+
+<strong>
+URLs detected:
+</strong>
+
+{{ url_analysis.urls_found }}
+
+</p>
+
+
+
+
+<p>
+
+<strong>
+Total URL Risk Score:
+</strong>
+
+{{ url_analysis.total_risk_score }}
+
+</p>
+
+
+
+
+
+{% for item in url_analysis.details %}
+
+
+
+<div class="url-analysis-box">
+
+
+<p>
+
+<strong>
+Analyzed URL:
+</strong>
+
+{{ item.url }}
+
+</p>
+
+
+
+<p>
+
+<strong>
+Risk Score:
+</strong>
+
+{{ item.risk_score }}
+
+</p>
+
+
+
+
+<ul>
+
+
+{% for reason in item.reasons %}
+
+<li>
+{{ reason }}
+</li>
+
+{% endfor %}
+
+
+</ul>
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+
+</section>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+{% if technical_explanation %}
+
+
+<section class="technical-card">
+
+
+<h2>
+Advanced XAI Details
+</h2>
+
+
+
+
+<p>
+<strong>
+Method:
+</strong>
+
+{{ technical_explanation.method }}
+
+</p>
+
+
+
+
+<p>
+<strong>
+Target:
+</strong>
+
+{{ technical_explanation.target }}
+
+</p>
+
+
+
+
+<p>
+<strong>
+Steps:
+</strong>
+
+{{ technical_explanation.steps_used }}
+
+</p>
+
+
+
+
+<p>
+<strong>
+Converged:
+</strong>
+
+{{ technical_explanation.converged }}
+
+</p>
+
+
+
+
+<p>
+<strong>
+Convergence Delta:
+</strong>
+
+{{ technical_explanation.convergence_delta }}
+
+</p>
+
+
+
+
+<h3>
+Token Contributions
+</h3>
+
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Token
+</th>
+
+
+<th>
+Importance
+</th>
+
+
+<th>
+Effect
+</th>
+
+
+</tr>
+
+
+
+
+{% for item in technical_explanation.important_tokens %}
+
+
+<tr>
+
+<td>
+{{ item.token }}
+</td>
+
+
+<td>
+{{ item.importance }}
+</td>
+
+
+<td>
+{{ item.effect }}
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+
+</section>
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% if xai_plot %}
+
+
+<section class="xai-image-card">
+
+
+<h2>
+Visual XAI Explanation
+</h2>
+
+
+
+<p>
+The visualization shows how individual tokens influenced the phishing prediction.
+</p>
+
+
+
+<img
+src="{{ url_for('static', filename='images/' + xai_plot) }}"
+alt="XAI explanation graph">
+
+
+</section>
+
+
+{% endif %}
+
+
+
+
+
+</section>
+
+{% endblock %}
